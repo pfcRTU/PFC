@@ -1,162 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <title>Photography & Filming Club</title>
     <link rel="icon" href="/images/pfclogo1.png" type="image/png">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preload" as="image" href="images/hit2.jpg">
     <link rel="manifest" href="/manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#d31b3c',
+                        secondary: '#090909',
+                        accent: '#ca997c',
+                    },
+                    fontFamily: {
+                        'bungee': ['Bungee Spice', 'cursive'],
+                    },
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-    <div id="loader" class="loader-wrapper">
-        <div class="spinner"></div>
-      </div>      
+
+<body class="bg-white text-gray-800">
+    <!-- Loader -->
+    <div id="loader" class="fixed inset-0 bg-black flex items-center justify-center z-50">
+        <div class="w-12 h-12 border-4 border-white/20 border-t-primary rounded-full animate-spin"></div>
+    </div>
+
     <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">
-            <div class="logo-wrapper">
-                <a href="#" onclick="location.reload();">
-                <img src="images/PFCLogo.png" alt="PFC Logo">
+    <nav class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-sm shadow-md z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="#" onclick="location.reload();" class="block">
+                            <img src="images/PFCLogo.png" alt="PFC Logo" class="h-16 w-auto">
+                        </a>
+                    </div>
+                    <h1 class="ml-4 text-xl font-bold">
+                        <span class="text-primary">Photography</span>
+                        <span class="text-gray-600">&</span>
+                        <span class="text-yellow-500">Filming</span>
+                        <span class="text-blue-600">Club</span>
+                    </h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="flex space-x-8">
+                        <a href="#home" class="nav-link text-gray-600 hover:text-primary transition-colors">Home</a>
+                        <a href="#gallery"
+                            class="nav-link text-gray-600 hover:text-primary transition-colors">Gallery</a>
+                        <a href="#events" class="nav-link text-gray-600 hover:text-primary transition-colors">Events</a>
+                        <a href="#about" class="nav-link text-gray-600 hover:text-primary transition-colors">About</a>
+                        <a href="https://medium.com" target="_blank"
+                            class="nav-link text-gray-600 hover:text-primary transition-colors">Blog</a>
+                        <a href="#contact"
+                            class="nav-link text-gray-600 hover:text-primary transition-colors">Contact</a>
+                    </div>
+                </div>
             </div>
-        </div>
-        <h1 class="club-name"> <span style="color:#ad0707;">Photography</span> <SPAN style="color: rgb(240, 238, 234);">&</SPAN> <span style="color: #fcd716;">Filming</span> <span style="color: #2f5886;">Club</span></h1>
-        <div class="nav-links">
-            <a href="#home" class="nav-link active">Home</a>
-            <a href="#gallery" class="nav-link">Gallery</a>
-            <a href="#events" class="nav-link">Events</a>
-            <a href="#about" class="nav-link">About</a>
-            <a href="#contact" class="nav-link">Contact</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h2 class="headline">Capture. Create. Inspire.</h2>
-            <div class="cta-buttons">
-                <a href="#contact" class="cta-btn">Join the Club</a>
-                <a href="#gallery" class="cta-btn">Explore Gallery</a>
+    <section id="home" class="min-h-screen relative flex items-center justify-center pt-20">
+        <div class="absolute inset-0 overflow-hidden">
+            <img src="images/First.gif" alt="Animated Hero" class="w-full h-full object-cover brightness-75">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/10 to-black"></div>
+        </div>
+        <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
+            <h2 class="text-4xl md:text-6xl font-bold mb-8 text-gray-100">Capture. Create. Inspire.</h2>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contact"
+                    class="px-8 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">Join the
+                    Club</a>
+                <a href="#gallery"
+                    class="px-8 py-3 border-2 border-primary text-primary rounded-lg hover:bg-primary/10 transition-colors">Explore
+                    Gallery</a>
             </div>
         </div>
-        <div class="hero-container">
-            <img src="images/First.gif" alt="Animated Hero" class="hero-gif">
-            <div class="hero-gradient"></div>
-            </div>
-
     </section>
 
+    <!-- replace youtube link with video embed link to play -->
+    <section id="interaction-video" class="py-20 px-4">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/AF3XJT9YKpM?si=BAXwqugwsaudJaTf"
+            title="YouTube video player" title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
+            class="mx-auto rounded-lg shadow-lg border-none w-auto md:w-[80%] md:h-[80vh]"></iframe>
+    </section>
 
     <!-- Gallery Section -->
-    <section id="gallery" class="gallery-section">
-        <h2 class="section-title">Gallery</h2>
-        <div class="gallery-grid" id="galleryGrid">
-            <!-- Gallery items will be added dynamically with JavaScript -->
+    <section id="gallery" class="py-20 px-4">
+        <h2 class="text-4xl font-bold text-center mb-12">Gallery</h2>
+        <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            <!-- Gallery items will be added dynamically -->
         </div>
-        <button class="load-more-btn">Load More</button>
+        <div class="text-center mt-12">
+            <button
+                class="load-more-btn px-8 py-3 border-2 border-primary text-primary rounded-lg hover:bg-primary/10 transition-colors">Load
+                More</button>
+        </div>
     </section>
 
     <!-- Events Section -->
-    <section id="events" class="events-section">
-        <h2 class="section-title">Events</h2>
-
-        <div class="events-container">
-            <h3 class="events-subtitle">Upcoming Events</h3>
-            <div class="events-grid" id="upcomingEvents">
+    <section id="events" class="py-20 px-4 bg-gray-50">
+        <h2 class="text-4xl font-bold text-center mb-12">Events</h2>
+        <div class="max-w-7xl mx-auto">
+            <h3 class="text-2xl font-semibold mb-8">Upcoming Events</h3>
+            <div id="upcomingEvents" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
                 <!-- Upcoming events will be added dynamically -->
             </div>
 
-            <h3 class="events-subtitle">Past Events</h3>
-            <div class="events-grid" id="pastEvents">
+            <h3 class="text-2xl font-semibold mb-8">Past Events</h3>
+            <div id="pastEvents" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Past events will be added dynamically -->
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about-section">
-        <img src="images/space.gif" alt="Animated Hero" class="about-section-gif">
-        <h2 class="section-title">About Us</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>PFC – Photography and Filming Club is the official visual arts club of Rajasthan Technical University. We're a vibrant community of passionate photographers and filmmakers who love capturing the world through our lenses.</p>
-                <p>Dedicated to creativity and innovation, we explore new techniques, share knowledge, and produce stunning visual content together. Whether you're a beginner or a pro, PFC offers a platform to learn, collaborate, and showcase your talent.</p>
+    <section id="about" class="py-20 px-4 relative ">
+        <div class="absolute inset-0 overflow-hidden">
+            <img src="images/space.gif" alt="Background" class="w-full h-full object-cover brightness-75">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-black/60"></div>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto text-white">
+            <h2 class="text-4xl font-bold text-center mb-12">About Us</h2>
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <p class="mb-4">PFC – Photography and Filming Club is the official visual arts club of Rajasthan
+                    Technical University. We're a vibrant community of passionate photographers and filmmakers who love
+                    capturing the world through our lenses.</p>
+                <p>Dedicated to creativity and innovation, we explore new techniques, share knowledge, and produce
+                    stunning visual content together. Whether you're a beginner or a pro, PFC offers a platform to
+                    learn, collaborate, and showcase your talent.</p>
             </div>
 
-            <div class="team-section">
-                <h3 class="team-title">Our Team</h3>
-                <div class="team-grid" id="teamGrid">
-                    <!-- Team members will be added dynamically -->
-                </div>
+            <h3 class="text-2xl font-semibold text-center mb-12">Our Team</h3>
+            <div id="teamGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- Team members will be added dynamically -->
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <h2 class="section-title">Join the Club</h2>
-        <div class="contact-content">
-            <form id="contactForm" class="contact-form" action="https://formsubmit.co/rshutterbugs@gmail.com" method="POST">
-                <div class="form-group">
-                    <label for="fullName">Full Name</label>
-                    <input type="text" id="fullName" name="fullName" required autocomplete="name">
+    <section id="contact" class="py-20 px-4 bg-gray-50">
+        <h2 class="text-4xl font-bold text-center mb-12">Join the Club</h2>
+        <div class="max-w-2xl mx-auto">
+            <form id="contactForm" class="bg-white p-8 rounded-lg shadow-lg"
+                action="https://formsubmit.co/rshutterbugs@gmail.com" method="POST">
+                <div class="mb-6">
+                    <label for="fullName" class="block text-gray-700 mb-2">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required autocomplete="name"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required autocomplete="email">
+                <div class="mb-6">
+                    <label for="email" class="block text-gray-700 mb-2">Email</label>
+                    <input type="email" id="email" name="email" required autocomplete="email"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
                 </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" required inputmode="numeric" autocomplete="tel">
+                <div class="mb-6">
+                    <label for="phone" class="block text-gray-700 mb-2">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required inputmode="numeric" autocomplete="tel"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
                 </div>
-                <div class="form-group">
-                    <label for="about">Tell us a bit about yourself</label>
-                    <textarea id="about" name="about" rows="5" required></textarea>
+                <div class="mb-6">
+                    <label for="about" class="block text-gray-700 mb-2">Tell us a bit about yourself</label>
+                    <textarea id="about" name="about" rows="5" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
                 </div>
-                <button type="submit" class="submit-btn">Join the Club</button>
+                <button type="submit"
+                    class="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary/90 transition-colors">Join the
+                    Club</button>
             </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="social-links">
-            <a href="https://www.instagram.com/pfc.rtu/" class="social-link" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-instagram"></i>
-              </a>              
-            <a href="https://www.youtube.com/@pfcrtu" class="social-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
-            <!-- <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a> -->
-        </div>
-        <div class="contact-info">
-            <p>e-mail: rshutterbugs@gmail.com</p>
-        </div>
-        <div class="copyright">
-            <p>&copy; Photography & Filming Club. All rights reserved.</p>
-            <p>Designed by Abhinav & Garvit</p>
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="https://www.instagram.com/pfc.rtu/" class="text-white hover:text-primary transition-colors"
+                    target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-instagram text-2xl"></i>
+                </a>
+                <a href="https://www.youtube.com/@pfcrtu" class="text-white hover:text-primary transition-colors"
+                    target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-youtube text-2xl"></i>
+                </a>
+            </div>
+            <div class="text-center mb-4">
+                <p>e-mail: rshutterbugs@gmail.com</p>
+            </div>
+            <div class="text-center text-gray-400">
+                <p>&copy; Photography & Filming Club. All rights reserved.</p>
+                <p>Designed by Abhinav & Garvit</p>
+            </div>
         </div>
     </footer>
 
-    <!-- Modal for images -->
-    <div class="modal" id="imageModal">
-        <span class="close-modal">&times;</span>
-        <div class="modal-content">
-            <div class="modal-nav prev-btn">&lt;</div>
-            <div class="modal-img-container">
-                <img class="modal-img" id="modalImage">
-                <video class="modal-video" id="modalVideo" controls>
-                    <source src="" type="video/mp4" id="modalVideoSource">
+    <!-- Modal -->
+    <div id="imageModal" class="fixed inset-0 bg-black/90 hidden z-50">
+        <span class="close-modal absolute top-4 right-6 text-white text-4xl cursor-pointer">&times;</span>
+        <div class="flex items-center justify-center h-full">
+            <div class="modal-nav prev-btn text-white text-4xl cursor-pointer px-4">&#10094;</div>
+            <div class="modal-img-container max-w-4xl mx-4">
+                <img id="modalImage" class="max-h-[80vh] mx-auto">
+                <video id="modalVideo" class="max-h-[80vh] mx-auto hidden" controls>
+                    <source id="modalVideoSource" type="video/mp4">
                 </video>
             </div>
-            <div class="modal-nav next-btn">&gt;</div>
+            <div class="modal-nav next-btn text-white text-4xl cursor-pointer px-4">&#10095;</div>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>

@@ -23,9 +23,9 @@ function initNavbar() {
     window.addEventListener('scroll', () => {
         // Add background to navbar on scroll
         if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(0, 0, 0, 0.9)';
+            navbar.classList.add('bg-white', 'shadow-md');
         } else {
-            navbar.style.background = 'rgba(0, 0, 0, 0.8)';
+            navbar.classList.remove('bg-white', 'shadow-md');
         }
 
         // Highlight active nav link based on scroll position
@@ -39,9 +39,9 @@ function initNavbar() {
         });
 
         navLinks.forEach(link => {
-            link.classList.remove('active');
+            link.classList.remove('text-primary');
             if (link.getAttribute('href').substring(1) === current) {
-                link.classList.add('active');
+                link.classList.add('text-primary');
             }
         });
     });
@@ -703,33 +703,28 @@ function populateGallery() {
     for (let i = 0; i < Math.min(visibleGalleryItems, galleryItems.length); i++) {
         const item = galleryItems[i];
         const galleryItem = document.createElement('div');
-        galleryItem.className = 'gallery-item';
+        galleryItem.className = 'relative overflow-hidden rounded-lg cursor-pointer group';
         galleryItem.setAttribute('data-index', i);
 
         if (item.type === 'image') {
             galleryItem.innerHTML = `
-                <img src="${item.src.replace('/upload/', '/upload/f_webp/')}" alt="${item.title}" loading="lazy">
-                <div class="gallery-overlay">
-                    <h3>${item.title}</h3>
-                    <p>${item.description}</p>
+                <img src="${item.src.replace('/upload/', '/upload/f_webp/')}" alt="${item.title}" 
+                     class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
+                    <h3 class="text-white text-lg font-semibold">${item.title}</h3>
+                    <p class="text-white/80 text-sm">${item.description}</p>
                 </div>
             `;
         } else if (item.type === 'video') {
             galleryItem.innerHTML = `
-                <div class="gallery-video-preview" style="background: url('${item.preview}') no-repeat center center/cover;"></div>
-                <div class="gallery-overlay">
-                    <h3>${item.title}</h3>
-                    <p>${item.description}</p>
+                <div class="w-full h-64 bg-cover bg-center" style="background-image: url('${item.preview}')">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
+                        <i class="fas fa-play text-white text-4xl"></i>
+                    </div>
                 </div>
-            `;
-        } else if (item.type === 'iframe') {
-            galleryItem.innerHTML = `
-                <div class="gallery-video-preview iframe-preview">
-                    <iframe src="${item.src}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>
-                <div class="gallery-overlay">
-                    <h3>${item.title}</h3>
-                    <p>${item.description}</p>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
+                    <h3 class="text-white text-lg font-semibold">${item.title}</h3>
+                    <p class="text-white/80 text-sm">${item.description}</p>
                 </div>
             `;
         }
@@ -744,9 +739,9 @@ function populateGallery() {
 
     // Hide "Load More" button if all items are shown
     if (visibleGalleryItems >= galleryItems.length) {
-        document.querySelector('.load-more-btn').style.display = 'none';
+        document.querySelector('.load-more-btn').classList.add('hidden');
     } else {
-        document.querySelector('.load-more-btn').style.display = 'block';
+        document.querySelector('.load-more-btn').classList.remove('hidden');
     }
 }
 
@@ -789,16 +784,16 @@ function populateEvents() {
     // Add upcoming events
     events.upcoming.forEach(event => {
         const eventCard = document.createElement('div');
-        eventCard.className = 'event-card';
+        eventCard.className = 'bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300';
         eventCard.innerHTML = `
-            <div class="event-img">
-                <img src="${event.image}" alt="${event.title}">
+            <div class="h-48 overflow-hidden">
+                <img src="${event.image}" alt="${event.title}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
             </div>
-            <div class="event-info">
-                <p class="event-date">${event.date}</p>
-                <h3 class="event-title">${event.title}</h3>
-                <p class="event-desc">${event.description}</p>
-                <a href="${event.registerLink}" class="register-btn" target="_blank">Register</a>
+            <div class="p-6">
+                <p class="text-primary text-sm font-medium mb-2">${event.date}</p>
+                <h3 class="text-xl font-semibold mb-2">${event.title}</h3>
+                <p class="text-gray-600 mb-4">${event.description}</p>
+                <a href="${event.registerLink}" class="inline-block bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors" target="_blank">Register</a>
             </div>
         `;
         upcomingEventsGrid.appendChild(eventCard);
@@ -807,14 +802,14 @@ function populateEvents() {
     // Add past events
     events.past.forEach(event => {
         const eventCard = document.createElement('div');
-        eventCard.className = 'event-card';
+        eventCard.className = 'bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300';
         eventCard.innerHTML = `
-            <div class="event-img">
-                <img src="${event.image}" alt="${event.title}">
+            <div class="h-48 overflow-hidden">
+                <img src="${event.image}" alt="${event.title}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
             </div>
-            <div class="event-info">
-                <p class="event-date">${event.date}</p>
-                <h3 class="event-title">${event.title}</h3>
+            <div class="p-6">
+                <p class="text-primary text-sm font-medium mb-2">${event.date}</p>
+                <h3 class="text-xl font-semibold">${event.title}</h3>
             </div>
         `;
         pastEventsGrid.appendChild(eventCard);
@@ -950,24 +945,24 @@ function populateTeam() {
     // Add team members
     teamMembers.forEach(member => {
         const teamMember = document.createElement('div');
-        teamMember.className = 'team-member';
+        teamMember.className = 'bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2';
         teamMember.innerHTML = `
-            <div class="member-img">
-                <img src="${member.image}" alt="${member.name}" loading="lazy">
+            <div class="relative mb-6">
+                <img src="${member.image}" alt="${member.name}" 
+                     class="w-32 h-32 mx-auto rounded-lg object-cover grayscale hover:grayscale-0 transition-all duration-300">
             </div>
-            <h3 class="member-name">${member.name}</h3>
-            <p class="member-position">${member.position}</p>
-            <p class="member-desc">${member.description}</p>
+            <h3 class="text-xl font-semibold text-center mb-2">${member.name}</h3>
+            <p class="text-primary text-center font-medium mb-2">${member.position}</p>
+            <p class="text-gray-600 text-center mb-4">${member.description}</p>
+            <div class="flex justify-center space-x-4">
+                ${member.instagram ? `<a href="${member.instagram}" class="text-gray-600 hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>` : ''}
+                ${member.youtube ? `<a href="${member.youtube}" class="text-gray-600 hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-youtube text-xl"></i>
+                </a>` : ''}
+            </div>
         `;
-        let socialsHTML = '<div class="social-links team-socials">';
-if (member.instagram) {
-    socialsHTML += `<a href="${member.instagram}" class="social-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>`;
-}
-if (member.youtube) {
-    socialsHTML += `<a href="${member.youtube}" class="social-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>`;
-}
-socialsHTML += '</div>';
-teamMember.innerHTML += socialsHTML;
         teamGrid.appendChild(teamMember);
     });
 }
@@ -1002,7 +997,7 @@ function initModal() {
 
     // Keyboard navigation
     document.addEventListener('keydown', function(event) {
-        if (!modal.style.display || modal.style.display === 'none') return;
+        if (!modal.classList.contains('block')) return;
 
         if (event.key === 'Escape') {
             closeModal();
@@ -1024,24 +1019,22 @@ function openModal(index) {
     const item = galleryItems[index];
 
     // Reset modal content
-    modalImage.style.display = 'none';
-    modalVideo.style.display = 'none';
+    modalImage.classList.add('hidden');
+    modalVideo.classList.add('hidden');
 
     // Set appropriate content
     if (item.type === 'image') {
         modalImage.src = item.src.replace('/upload/', '/upload/f_webp/');
-        modalImage.style.display = 'block';
+        modalImage.classList.remove('hidden');
     } else if (item.type === 'video') {
         modalVideoSource.src = item.src;
         modalVideo.load();
-        modalVideo.style.display = 'block';
+        modalVideo.classList.remove('hidden');
         modalVideo.play();
     }
 
     // Display modal
-    modal.style.display = 'block';
-
-    // Disable scrolling on body
+    modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
 }
 
@@ -1050,14 +1043,12 @@ function closeModal() {
     const modalVideo = document.getElementById('modalVideo');
 
     // Stop video if playing
-    if (modalVideo.style.display === 'block') {
+    if (!modalVideo.classList.contains('hidden')) {
         modalVideo.pause();
     }
 
     // Hide modal
-    modal.style.display = 'none';
-
-    // Re-enable scrolling
+    modal.classList.add('hidden');
     document.body.style.overflow = 'auto';
 }
 
@@ -1074,17 +1065,13 @@ function navigateModal(direction) {
     openModal(newIndex);
 }
 
-// Contact form setup (using FormSubmit service)
+// Contact form setup
 function setupContactForm() {
     const contactForm = document.getElementById('contactForm');
 
     contactForm.addEventListener('submit', function(e) {
         // FormSubmit handles the form submission
         // You can add additional validation or processing here if needed
-
-        // Example: Display a success message (in a real implementation)
-        // e.preventDefault();
-        // alert('Thank you for your submission! We will contact you soon.');
     });
 }
 
@@ -1099,7 +1086,7 @@ function setupSmoothScrolling() {
 
             if (targetElement) {
                 window.scrollTo({
-                    top: targetElement.offsetTop - 70, // Offset for navbar
+                    top: targetElement.offsetTop - 80, // Offset for navbar
                     behavior: 'smooth'
                 });
             }
@@ -1107,41 +1094,42 @@ function setupSmoothScrolling() {
     });
 }
 
+// Hide loader when page is loaded
 window.addEventListener('load', function () {
     const loader = document.getElementById('loader');
-    if (loader) loader.style.display = 'none';
+    if (loader) loader.classList.add('hidden');
 });
 
+// Service Worker registration
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
-      navigator.serviceWorker.register('/sw.js').then(function(registration) {
-        console.log('ServiceWorker registered with scope:', registration.scope);
-      }, function(err) {
-        console.log('ServiceWorker registration failed:', err);
-      });
+        navigator.serviceWorker.register('/sw.js').then(function(registration) {
+            console.log('ServiceWorker registered with scope:', registration.scope);
+        }, function(err) {
+            console.log('ServiceWorker registration failed:', err);
+        });
     });
-  }
-  
+}
 
+// Prevent zooming and double-tap on mobile
 document.addEventListener('gesturestart', function (e) {
-  e.preventDefault();
+    e.preventDefault();
 });
 
-document.addEventListener('gesturestart', e => e.preventDefault());
 document.addEventListener('dblclick', e => e.preventDefault());
 
 let lastTouchEnd = 0;
 
 document.addEventListener('touchstart', function (event) {
-  if (event.touches.length > 1) {
-    event.preventDefault(); // Prevent pinch
-  }
+    if (event.touches.length > 1) {
+        event.preventDefault();
+    }
 }, { passive: false });
 
 document.addEventListener('touchend', function (event) {
-  const now = new Date().getTime();
-  if (now - lastTouchEnd <= 300) {
-    event.preventDefault(); // Prevent double-tap just in case
-  }
-  lastTouchEnd = now;
+    const now = new Date().getTime();
+    if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+    }
+    lastTouchEnd = now;
 }, false);
