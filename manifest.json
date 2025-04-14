@@ -1,0 +1,22 @@
+{
+    "name": "Photography & Filming Club",
+    "short_name": "PFC",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#d31b3c",
+    "orientation": "portrait",
+    "icons": [
+      {
+        "src": "/images/pfclogo1.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/images/pfclogo1.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+}
+  

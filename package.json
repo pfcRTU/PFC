@@ -1,0 +1,22 @@
+{
+  "name": "eye-candy-photo-club",
+  "version": "1.0.0",
+  "description": "A photography and filming club website inspired by eyecannndy.com",
+  "main": "server-cjs.js",
+  "scripts": {
+    "start": "node server-cjs.js",
+    "dev": "node server-cjs.js",
+    "bun:start": "bun run server.js --host 0.0.0.0",
+    "bun:dev": "bun run server.js --host 0.0.0.0"
+  },
+  "keywords": [
+    "photography",
+    "film",
+    "club",
+    "eye-candy"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}
